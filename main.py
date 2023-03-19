@@ -14,8 +14,8 @@ st.markdown("""
 
 # Setting some default stuffs
 e = Emotion()
-ans = {0.32860908: 'surprise', 0.22596626: 'joy', 0.18800624: 'fear',
-       0.17714633: 'sadness', 0.055351604: 'anger', 0.024920516: 'love'} # default values
+ans =  {0.84251994: 'joy', 0.073605336: 'love', 0.06991012: 'surprise',
+        0.007311212: 'fear', 0.006328419: 'sadness', 0.00032493653: 'anger'} # default values
 default_sentence = "I am happy that you are here!"
 
 st.title("Emotion Recognizer ")
@@ -40,7 +40,8 @@ with c2:
     state = st.button("Emotion Check")
     if state:
         sentence = st.session_state["key"]
-        ans = e.predict_emotion(sentence)
+        ans = e.predict_emotion([sentence])
+        #print("Ans : ", ans)
 
 with c3:
     st.write("Your Sentence Emotion: ")

@@ -42,7 +42,7 @@ class Emotion:
             emotion[ans[index]] = self.emotion_mapping[index]
 
         emotion = self.sort_dict(emotion)
-        print(emotion)
+        #print("Emotion : ", emotion)
         return emotion
 
 
