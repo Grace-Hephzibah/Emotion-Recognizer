@@ -1,3 +1,4 @@
+import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.utils import pad_sequences
@@ -41,8 +42,8 @@ class Emotion:
             emotion[ans[index]] = self.emotion_mapping[index]
 
         emotion = self.sort_dict(emotion)
+        print(emotion)
         return emotion
-
 
 
 

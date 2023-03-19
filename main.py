@@ -1,7 +1,7 @@
 import streamlit as st
 from model_code import Emotion
 
-# Setting some default stuffs
+# Page Setups
 st.set_page_config(layout="wide")
 st.markdown("""
 <style>
@@ -11,25 +11,38 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Code logic starts here
-emoji_code = {'sadness': '😟', 'anger': '😡', 'love': '💖', 'surprise': '😮', 'fear': '😱', 'joy': '🥳'}
+
+# Setting some default stuffs
+e = Emotion()
+ans = {0.32860908: 'surprise', 0.22596626: 'joy', 0.18800624: 'fear',
+       0.17714633: 'sadness', 0.055351604: 'anger', 0.024920516: 'love'} # default values
+default_sentence = "I am happy that you are here!"
 
 st.title("Emotion Recognizer ")
-
-e = Emotion()
 c1, c2, c3 = st.columns([1, 3, 1])
 
+emoji_code = {'sadness': '😟', 'anger': '😡', 'love': '💖', 'surprise': '😮', 'fear': '😱', 'joy': '🥳'}
+
+# Initialization
+if 'key' not in st.session_state:
+    st.session_state['key'] = default_sentence
+
+# Code logic starts here
 with c1:
     st.write("Emoji Codes : ", emoji_code)
 
 with c2:
     sentence = st.text_area("Enter the sentence here ⬇️",
-                            value="I am happy that you are here !",
-                            height=10
+                            value=default_sentence,
+                            height=10,
+                            key = "key"
                             )
+    state = st.button("Emotion Check")
+    if state:
+        sentence = st.session_state["key"]
+        ans = e.predict_emotion(sentence)
 
 with c3:
-    ans = e.predict_emotion(sentence)
     st.write("Your Sentence Emotion: ")
     for key in ans:
         val = ans[key]
