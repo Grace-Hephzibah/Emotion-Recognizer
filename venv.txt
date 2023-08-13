@@ -1,0 +1,1 @@
+conda activate "C:\Users\Grace Hephzibah M\Documents\GitHub\Emotion-Recognizer\env"
