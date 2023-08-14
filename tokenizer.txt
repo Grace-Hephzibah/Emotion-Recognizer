@@ -1,1 +1,0 @@
-<keras.preprocessing.text.Tokenizer object at 0x000001C7174261C0>
